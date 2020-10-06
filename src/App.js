@@ -1,26 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import HelloWorld from './LearnJS/001_helloWorld';
+import Types from './LearnJS/003_types';
+import Review from './TProg/02_Review';
+import ObjectRecursion from './TProg/03_objectRecursion';
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Review />
+        </div>
+    );
 }
 
 export default App;
