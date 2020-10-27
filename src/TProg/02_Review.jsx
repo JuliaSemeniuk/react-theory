@@ -94,6 +94,39 @@ function findPalindrome(str) {
     return result;
 }
 
+function getSumOfPositives(array) {
+    let sum = 0;
+    array.forEach(function(value) {
+        if (value > 0) {
+            sum = sum + value;
+        }
+    });
+    return sum;
+}
+
+function getOpposite(number) {
+    let oppositeNumber;
+    if (number < 0 || number > 0) {
+        oppositeNumber = -number
+    }
+    return oppositeNumber
+};
+
+function removeSpasesInStr (string) {
+   const stringArr = string.split(' ');
+   console.log('array of long string: ' + stringArr);
+   let stringArrWithoutSpases = [];
+   stringArr.forEach(function(value) {
+       if(value !== ' ') {
+           stringArrWithoutSpases.push(value)
+       }
+   });
+   stringArrWithoutSpases.join('')
+   return stringArrWithoutSpases;
+}
+
+
+
 export default class Review extends React.Component {
     render() {
         const arr = [-3, -2, -1, 0, 1, 2, 3];
@@ -104,8 +137,10 @@ export default class Review extends React.Component {
         const zero = 0;
         const seven = 7;
         const five = 5;
+        const minusSeven = -7;
         const palindromeMadam = 'madam';
         const palindromePineapple = 'pineapple';
+        const longString = 'hello, I am a long string!'
         const biggest = getBiggest(arr);
         const reverseArr = getReverse(arr); // arr тепер виглядає, як [3, 2, 1, 0, -1, -2, -3]
         const reverseArrCicle = getReverseByCicle(arr);
@@ -119,6 +154,12 @@ export default class Review extends React.Component {
         const sort = sortTwoArrays(arr146, arr235);
         const palindrome = findPalindrome(palindromeMadam);
         const palindromeNot = findPalindrome(palindromePineapple);
+        const sumOfPositives = getSumOfPositives(arr);
+        const oppositeForSeven = getOpposite(seven);
+        const oppositeForMinusSeven = getOpposite(minusSeven);
+        const stringWithoutSpase = removeSpasesInStr(longString);
+        const factorialOfFive = getFactorial(five)
+
 
         return (
             <div>
@@ -190,6 +231,24 @@ export default class Review extends React.Component {
                     can do this quicker than concatenating them followed by a
                     sort. ***
                     <b>Result: {sort} </b>
+                </p>
+                <p>
+                    10. You get an array of numbers, return the sum of all of the positives ones in list [3, 2, 1, 0, -1, -2, -3]. 
+                    <b>Result: {sumOfPositives} </b>
+                </p>
+                <p>
+                    10. Given a number, find its opposite. 
+                    <b> Result for 7: {oppositeForSeven}; Result for -7: {oppositeForMinusSeven} </b>
+                </p>
+                <p>
+                    11. Remove the spaces from the string, then return the resultant string.
+                    <b> Result for 'hello, I am a long string!': {stringWithoutSpase} </b>
+                </p>
+                <p>
+                    12. Write a program that finds the summation of every number from 1 to num. The number will always be a positive integer greater than 0.
+summation(8):  36
+1 + 2 + 3 + 4 + 5 + 6 + 7 + 8
+                    <b> Result for '5': {factorialOfFive} </b>
                 </p>
             </div>
         );
