@@ -125,6 +125,46 @@ function removeSpasesInStr (string) {
    return stringArrWithoutSpases;
 }
 
+function getFactorialByCycle (number) {
+    let sum = 0;
+    for (let i = 1; i < number+1; i++) {
+        sum = sum + i;
+    }
+    return sum;
+}
+
+function getElementInLine (array, number) {
+    let result = 'element did not find';
+    array.forEach(function(value, index) {
+        if (array[index] === number) {
+            result = index;
+        }
+    })
+    return result;    
+}
+
+function getStringInLine (array, string) {
+    let result = 'element did not find';
+    array.forEach(function(value, index) {
+        if (value === string) {
+            result = index;
+        }
+    })
+    return result;    
+
+}
+
+function getElementByBinarySearch (array, element, several, spot) {
+    const start = array[0];
+    const end = array[array.length-1]
+    const middle = Math.floor((start +(end-start))/2);
+
+    let result ='element didnt find'
+
+    console.log('start: ' + start + '; end: ' + end + '; middle: ' + middle);
+
+    
+}
 
 
 export default class Review extends React.Component {
@@ -138,9 +178,13 @@ export default class Review extends React.Component {
         const seven = 7;
         const five = 5;
         const minusSeven = -7;
+        const two = 2;
         const palindromeMadam = 'madam';
         const palindromePineapple = 'pineapple';
         const longString = 'hello, I am a long string!'
+        const strArray = ['winter', 'fall', 'spring', 'summer']
+        const summer = 'summer'
+        const arrayPositiveNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         const biggest = getBiggest(arr);
         const reverseArr = getReverse(arr); // arr тепер виглядає, як [3, 2, 1, 0, -1, -2, -3]
         const reverseArrCicle = getReverseByCicle(arr);
@@ -158,7 +202,14 @@ export default class Review extends React.Component {
         const oppositeForSeven = getOpposite(seven);
         const oppositeForMinusSeven = getOpposite(minusSeven);
         const stringWithoutSpase = removeSpasesInStr(longString);
-        const factorialOfFive = getFactorial(five)
+        const factorialByCycle = getFactorialByCycle(five)
+        const elementInline = getElementInLine(arr, zero)
+        const elementInlineSeven = getElementInLine(arr, seven)
+        const stringInLineSummer = getStringInLine(strArray, summer)
+        const stringInLineMadam = getStringInLine(strArray, palindromeMadam)
+        const stringInlineNumber =  getStringInLine(strArray, seven)
+        const elementByBinerySearch = getElementByBinarySearch(arrayPositiveNumber, two)
+        
 
 
         return (
@@ -248,7 +299,15 @@ export default class Review extends React.Component {
                     12. Write a program that finds the summation of every number from 1 to num. The number will always be a positive integer greater than 0.
 summation(8):  36
 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8
-                    <b> Result for '5': {factorialOfFive} </b>
+                    <b> Result for '5':  {factorialByCycle}</b>
+                </p>
+                <p>
+                    13. Inline search. Find element 0 in array [3, 2, 1, 0, -1, -2, -3].
+                    <b> Result:  {elementInline}; Result for 7: {elementInlineSeven}</b> 
+                </p>
+                <p>
+                    14. Inline search. Find element 'summer' in array ['winter', 'fall', 'spring', 'summer'].
+                    <b> Result:  {stringInLineSummer};   Result for 'madam': {stringInLineMadam};   Result for 7: {stringInlineNumber}</b> 
                 </p>
             </div>
         );
