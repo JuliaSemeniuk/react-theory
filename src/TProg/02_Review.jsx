@@ -154,15 +154,36 @@ function getStringInLine (array, string) {
 
 }
 
-function getElementByBinarySearch (array, element, several, spot) {
-    const start = array[0];
-    const end = array[array.length-1]
-    const middle = Math.floor((start +(end-start))/2);
+function getElementByBinarySearch (array, element, startOfArray, endOfArray, middleOfArray) {
+    let start = array[0];
+    let end = array[array.length-1]
+    let middle = Math.floor((start +(end-start))/2);
+    let elementesToDelete;
+    let removedElements;
 
     let result ='element didnt find'
 
     console.log('start: ' + start + '; end: ' + end + '; middle: ' + middle);
 
+    if (element === middle) {
+        result = array.indexOf(middle);
+    };
+
+    if (element < middle) {
+       elementesToDelete = (array[array.length-1] - array.indexOf(middle));
+       removedElements = array.splice(array.indexOf(middle), elementesToDelete);
+       return getElementByBinarySearch(array, element)
+       
+    }
+
+    if (element > middle) {
+        elementesToDelete = (array[array.length-1] - array.indexOf(middle))-1;
+        removedElements = array.splice(array.indexOf(middle), elementesToDelete);
+        return getElementByBinarySearch(array, element)
+    }
+        console.log('array[array.lenght-1]: ' + array[array.length-1] + '; array.indexOf(middle)' + array.indexOf(middle) + '; array' + array)
+
+        console.log('result: ' + result + '; elementesToDelete: ' + elementesToDelete)
     
 }
 
@@ -179,6 +200,7 @@ export default class Review extends React.Component {
         const five = 5;
         const minusSeven = -7;
         const two = 2;
+        const three = 3;
         const palindromeMadam = 'madam';
         const palindromePineapple = 'pineapple';
         const longString = 'hello, I am a long string!'
@@ -208,7 +230,7 @@ export default class Review extends React.Component {
         const stringInLineSummer = getStringInLine(strArray, summer)
         const stringInLineMadam = getStringInLine(strArray, palindromeMadam)
         const stringInlineNumber =  getStringInLine(strArray, seven)
-        const elementByBinerySearch = getElementByBinarySearch(arrayPositiveNumber, two)
+        const elementByBinerySearch = getElementByBinarySearch(arrayPositiveNumber, three)
         
 
 
