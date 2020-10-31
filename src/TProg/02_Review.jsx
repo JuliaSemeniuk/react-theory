@@ -154,36 +154,41 @@ function getStringInLine (array, string) {
 
 }
 
-function getElementByBinarySearch (array, element, startOfArray, endOfArray, middleOfArray) {
+function getElementByBinarySearch (array, element) {
     let start = array[0];
-    let end = array[array.length-1]
-    let middle = Math.floor((start +(end-start))/2);
+    let end = array[array.length-1];
+    let middle = Math.floor(array.length/2);
     let elementesToDelete;
     let removedElements;
-
-    let result ='element didnt find'
+    let result ='element didnt find';
 
     console.log('start: ' + start + '; end: ' + end + '; middle: ' + middle);
 
     if (element === middle) {
-        result = array.indexOf(middle);
+        return result = array.indexOf(middle);
+    };
+    
+    if (element === start) {
+        return result = array.indexOf(start);
+    };
+
+    if (element === end) {
+        return result = array.indexOf(end);
     };
 
     if (element < middle) {
-       elementesToDelete = (array[array.length-1] - array.indexOf(middle));
-       removedElements = array.splice(array.indexOf(middle), elementesToDelete);
-       return getElementByBinarySearch(array, element)
-       
-    }
+        elementesToDelete = (array[array.length-1] - array.indexOf(middle));
+        removedElements = array.splice(array.indexOf(middle), elementesToDelete);
+        return getElementByBinarySearch(array, element);
+    };
 
     if (element > middle) {
-        elementesToDelete = (array[array.length-1] - array.indexOf(middle))-1;
-        removedElements = array.splice(array.indexOf(middle), elementesToDelete);
+        elementesToDelete = array[array.length-1] - (array.indexOf(middle)+1);
+        removedElements = array.splice(array[0-1], elementesToDelete);
         return getElementByBinarySearch(array, element)
-    }
-        console.log('array[array.lenght-1]: ' + array[array.length-1] + '; array.indexOf(middle)' + array.indexOf(middle) + '; array' + array)
+    };
 
-        console.log('result: ' + result + '; elementesToDelete: ' + elementesToDelete)
+    return result;
     
 }
 
@@ -206,7 +211,7 @@ export default class Review extends React.Component {
         const longString = 'hello, I am a long string!'
         const strArray = ['winter', 'fall', 'spring', 'summer']
         const summer = 'summer'
-        const arrayPositiveNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        const arrayPositiveNumber = [1, 2, 3, 4, 5, 6, 7, 8]
         const biggest = getBiggest(arr);
         const reverseArr = getReverse(arr); // arr тепер виглядає, як [3, 2, 1, 0, -1, -2, -3]
         const reverseArrCicle = getReverseByCicle(arr);
@@ -230,7 +235,7 @@ export default class Review extends React.Component {
         const stringInLineSummer = getStringInLine(strArray, summer)
         const stringInLineMadam = getStringInLine(strArray, palindromeMadam)
         const stringInlineNumber =  getStringInLine(strArray, seven)
-        const elementByBinerySearch = getElementByBinarySearch(arrayPositiveNumber, three)
+        const elementByBinerySearch = getElementByBinarySearch(arrayPositiveNumber, seven)
         
 
 
