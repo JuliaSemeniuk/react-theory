@@ -154,42 +154,73 @@ function getStringInLine (array, string) {
 
 }
 
-function getElementByBinarySearch (array, element) {
+// function getElementByBinarySearch (array, element) {
+//     let start = array[0];
+//     let end = array[array.length-1];
+//     let middle = Math.floor(array.length/2);
+//     let elementesToDelete;
+//     let removedElements;
+//     let result ='element didnt find';
+
+//     console.log('start: ' + start + '; end: ' + end + '; middle: ' + middle);
+
+//     if (element === middle) {
+//         return result = array.indexOf(middle);
+//     };
+    
+//     if (element === start) {
+//         return result = array.indexOf(start);
+//     };
+
+//     if (element === end) {
+//         return result = array.indexOf(end);
+//     };
+
+//     if (element < middle) {
+//         elementesToDelete = (array[array.length-1] - array.indexOf(middle));
+//         removedElements = array.splice(array.indexOf(middle), elementesToDelete);
+//         return getElementByBinarySearch(array, element);
+//     };
+
+//     if (element > middle) {
+//         elementesToDelete = array[array.length-1] - (array.indexOf(middle)+1);
+//         removedElements = array.splice(array[0-1], elementesToDelete);
+//         return getElementByBinarySearch(array, element)
+//     };
+
+//     return result;
+    
+// }
+
+function getElementByBinarySearchByCicle (array, element) {
+
     let start = array[0];
     let end = array[array.length-1];
-    let middle = Math.floor(array.length/2);
-    let elementesToDelete;
-    let removedElements;
-    let result ='element didnt find';
+    let middle = Math.floor((start + end) / 2);
+    let result;
 
-    console.log('start: ' + start + '; end: ' + end + '; middle: ' + middle);
-
-    if (element === middle) {
-        return result = array.indexOf(middle);
-    };
-    
-    if (element === start) {
-        return result = array.indexOf(start);
-    };
-
-    if (element === end) {
-        return result = array.indexOf(end);
+    while (start <= end) {
+        if (start === element || end === element || middle === element) {
+            return result = array.indexOf(element)
+        };
+        if (array[middle] > element) {
+            end = middle - 1;
+        };
+        if (array[middle] < element) {
+            start = middle + 1;
+        };        
+        return result = 'false'       
     };
 
-    if (element < middle) {
-        elementesToDelete = (array[array.length-1] - array.indexOf(middle));
-        removedElements = array.splice(array.indexOf(middle), elementesToDelete);
-        return getElementByBinarySearch(array, element);
-    };
 
-    if (element > middle) {
-        elementesToDelete = array[array.length-1] - (array.indexOf(middle)+1);
-        removedElements = array.splice(array[0-1], elementesToDelete);
-        return getElementByBinarySearch(array, element)
-    };
+    console.log('start: ', start);
+    console.log('end: ', end);
+    console.log('middle: ', middle);
+    console.log('array[middle]:' , array[middle]);
+    console.log('result: ' , result)
 
-    return result;
-    
+
+
 }
 
 
@@ -206,6 +237,8 @@ export default class Review extends React.Component {
         const minusSeven = -7;
         const two = 2;
         const three = 3;
+        const four = 4;
+        const six = 6;
         const palindromeMadam = 'madam';
         const palindromePineapple = 'pineapple';
         const longString = 'hello, I am a long string!'
@@ -235,7 +268,8 @@ export default class Review extends React.Component {
         const stringInLineSummer = getStringInLine(strArray, summer)
         const stringInLineMadam = getStringInLine(strArray, palindromeMadam)
         const stringInlineNumber =  getStringInLine(strArray, seven)
-        const elementByBinerySearch = getElementByBinarySearch(arrayPositiveNumber, seven)
+        //const elementByBinerySearch = getElementByBinarySearch(arrayPositiveNumber, seven)
+        const elementByBinarySearchByCicle = getElementByBinarySearchByCicle(arrayPositiveNumber, seven)
         
 
 
@@ -335,6 +369,7 @@ summation(8):  36
                 <p>
                     14. Inline search. Find element 'summer' in array ['winter', 'fall', 'spring', 'summer'].
                     <b> Result:  {stringInLineSummer};   Result for 'madam': {stringInLineMadam};   Result for 7: {stringInlineNumber}</b> 
+                    {elementByBinarySearchByCicle}
                 </p>
             </div>
         );
