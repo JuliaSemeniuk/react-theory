@@ -6,10 +6,9 @@ export default class CurrencyConverter extends React.Component {
        super(props);
 
        this.state = {
-           converter: [
-               {amount: '0', result: ''}
-           ]
-       }
+           amount: 0,
+           result: '',
+       };
    };
 
    onChangeAmount = (event) => {
@@ -18,27 +17,26 @@ export default class CurrencyConverter extends React.Component {
    };
 
    OnClickCurrency = (event) => {
-       const {converter} = this.state;
        let currentResult;
+       const { amount } = this.state;
+
        if (event.target.value === '$') {
-           currentResult = converter.map((current)=>{
-               return {
-                   amount: current.amount,
-                   result: current.amount*0.85,
-               }
-           })
+           currentResult = parseInt(amount) * 0.85;
+       } else {
+        currentResult = amount * 1.18;
        };
-       this.setState({converter: currentResult})
+       this.setState({result: currentResult});
+       console.log(amount)
    };
 
     render () {        
-        const {converter, result} = this.state;
+        
         return (
             <div>
-               <input onChange={this.onChangeAmount} type='text' placeholder='amount' value={this.state.amount}></input>
+               <input onChange={this.onChangeAmount} type='text' placeholder='amount'></input>
                <input onClick={this.OnClickCurrency} type='radio' name='currency' value='$'></input>$
                <input onClick={this.OnClickCurrency} type='radio' name='currency' value='€'></input>€
-               <input type='text' value={result}></input>
+               <input onClick={this.OnClickCurrency} type='text' value={this.state.result}></input>
             </div>
         )
     }
