@@ -6,9 +6,9 @@ export default class CurrencyConverter extends React.Component {
        super(props);
 
        this.state = {
-           amount: '',
-           currency: '$',
-           result: '',
+            amount: '',
+            currency: '$',
+            result: '',
             message: '€'
        };
    };

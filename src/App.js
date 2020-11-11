@@ -7,6 +7,7 @@ import Types from './LearnJS/003_types';
 import Review from './TProg/02_Review';
 import ObjectRecursion from './TProg/03_objectRecursion';
 import CurrencyConverter from './TProg/04_CurrencyConverter';
+import Alphabet from './TProg/05_Alphabet';
 //import LearnCSS from './CSS/index'
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
         <div className="App">
             {/* <Review /> */}
             {/* <LearnCSS/> */}
-            {<CurrencyConverter/>}
+            {/* {<CurrencyConverter/>} */}
+            {<Alphabet/>}
         </div>
     );
 }
