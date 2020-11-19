@@ -13,9 +13,6 @@ export default class Cryptographer extends React.Component {
         let currentString = event.target.value
         let stringToArray = currentString.split('')
 
-        console.log('currentString: ', currentString)
-        console.log('stringToArray: ', stringToArray)
-
         const alphabet = [
             ' ',
             'a',
@@ -45,28 +42,19 @@ export default class Cryptographer extends React.Component {
             'y',
             'z',
         ]
-        let array = []
+        const array = []
 
         stringToArray.forEach(function (value) {
             let numberOfLetter = alphabet.indexOf(value)
+
             if (numberOfLetter === 0) {
                 array.push(alphabet[0])
-            }
-            if (numberOfLetter === 1) {
-                array.push(alphabet[alphabet.length - 1])
             } else {
                 array.push(alphabet[alphabet.length - numberOfLetter])
             }
-            console.log('numberOfLetter: ', numberOfLetter)
-            console.log('alphabet[0]: ', alphabet[0])
-            console.log('alphabet[alphabet.length: ', alphabet[alphabet.length])
         })
 
-        array = array.join('')
-
-        this.setState({ string: array })
-
-        console.log('array: ', array)
+        this.setState({ string: array.join('') })
     }
 
     render() {
