@@ -9,6 +9,7 @@ import ObjectRecursion from './TProg/03_objectRecursion'
 import CurrencyConverter from './TProg/04_CurrencyConverter'
 import Alphabet from './TProg/05_Alphabet'
 import Cryptographer from './TProg/06_Cryptographer'
+import Calendar from './TProg/07_Calendar'
 //import LearnCSS from './CSS/index'
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
             {/* <LearnCSS/> */}
             {/* {<CurrencyConverter/>} */}
             {/* {<Alphabet />} */}
-            {<Cryptographer />}
+            {/*<Cryptographer />*/}
+            {<Calendar />}
         </div>
     )
 }
