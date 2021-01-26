@@ -10,6 +10,7 @@ import CurrencyConverter from './TProg/04_CurrencyConverter'
 import Alphabet from './TProg/05_Alphabet'
 import Cryptographer from './TProg/06_Cryptographer'
 import Calendar from './TProg/07_Calendar'
+import TrianglesArea from './TProg/08_Triangle'
 //import LearnCSS from './CSS/index'
 
 function App() {
@@ -20,7 +21,8 @@ function App() {
             {/* {<CurrencyConverter/>} */}
             {/* {<Alphabet />} */}
             {/*<Cryptographer />*/}
-            {<Calendar />}
+            {/* {<Calendar />} */}
+            {<TrianglesArea />}
         </div>
     )
 }
