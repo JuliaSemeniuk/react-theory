@@ -11,6 +11,7 @@ import Alphabet from './TProg/05_Alphabet'
 import Cryptographer from './TProg/06_Cryptographer'
 import Calendar from './TProg/07_Calendar'
 import TrianglesArea from './TProg/08_Triangle'
+import AgeCalculator from './TProg/09_AgeCalculator'
 //import LearnCSS from './CSS/index'
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
             {/* {<Alphabet />} */}
             {/*<Cryptographer />*/}
             {/* {<Calendar />} */}
-            {<TrianglesArea />}
+            {/* {<TrianglesArea />} */}
+            {<AgeCalculator />}
         </div>
     )
 }
