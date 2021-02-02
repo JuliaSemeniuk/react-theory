@@ -8,7 +8,7 @@ function getCalendarInfo(data) {
     console.log('year: ', year)
 
     let isLeapYear = false
-    if ((year % 4 === 0 && year % 100 != 0) || year % 400 === 0) {
+    if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
         isLeapYear = true
     }
 
@@ -18,9 +18,7 @@ function getCalendarInfo(data) {
 
     console.log('month: ', month)
 
-    let monthsDuration
-
-    if (month % 2 === 0 && month != 2 && month != 8) {
+    if (month % 2 === 0 && month !== 2 && month !== 8) {
         return { days: 30, isLeapYear }
     }
     if (month === 2) {
@@ -28,8 +26,6 @@ function getCalendarInfo(data) {
     }
 
     return { days: 31, isLeapYear }
-
-    console.log('months duration: ', monthsDuration)
 }
 
 export default class Calendar extends React.Component {
