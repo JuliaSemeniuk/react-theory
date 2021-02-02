@@ -57,7 +57,7 @@ function calculateDaysInBirthYear(birthMonth, isLeapBirthYear, day30, day31) {
             daysInBirthYear = daysInBirthYear + 31
             continue
         } else {
-            daysInBirthYear = isLeapYear ? daysInBirthYear + 29 : daysInBirthYear + 28
+            daysInBirthYear = isLeapYear ? daysInBirthYear + 29 : daysInBirthYear + 28 //into function
         }
     }
 
