@@ -17,13 +17,17 @@ function splitCurrentData(currentData) {
     console.log('day:', day, '; month:', month, '; year:', year, ';')
     return { day, month, year } //if name === keys
 }
+//check a leap year on birth and current year
+const checkIsLeapYear = (param) => {
+    return (param % 4 === 0 && param % 100 !== 0) || param % 400 === 0
+}
 
 //an amount of leap years in current period
 function calculateLeapYears(birthYear, currentYear) {
     let amountLeatYear = 0
 
     for (let i = birthYear; i < currentYear; i++) {
-        if ((i % 4 === 0 && i % 100 !== 0) || i % 400 === 0) {
+        if (checkIsLeapYear(i)) {
             amountLeatYear = amountLeatYear + 1
         }
     }
@@ -31,16 +35,6 @@ function calculateLeapYears(birthYear, currentYear) {
     console.log('amount of leap years: ', amountLeatYear)
 
     return amountLeatYear
-}
-
-//check a leap year on birth and current year
-function checkIsLeapYear(year) {
-    let isLeapYear = false
-    if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
-        isLeapYear = true
-    }
-
-    return isLeapYear
 }
 
 //an amount of days in birth year a person lived
@@ -97,17 +91,11 @@ function calculateAge(
     const daysYears = (currentDataElements.year - birthDataElemenets.year - leapYears) * 365 + leapYears * 366
     console.log('days  years: ', daysYears)
 
-    let isLeapYear = isLeapBirthYear
+    const days = isLeapBirthYear ? 366 : 365
 
-    let generalAmountOfDays
+    const generalAmountOfDays =
+        daysYears - (days - daysInBirthYear) - birthDataElemenets.day + daysInCurrentYear + currentDataElements.day
 
-    if (isLeapYear === true) {
-        generalAmountOfDays =
-            daysYears - (366 - daysInBirthYear) - birthDataElemenets.day + daysInCurrentYear + currentDataElements.day
-    } else {
-        generalAmountOfDays =
-            daysYears - (365 - daysInBirthYear) - birthDataElemenets.day + daysInCurrentYear + currentDataElements.day
-    }
     console.log('general amount of Days:', generalAmountOfDays)
 
     return generalAmountOfDays
