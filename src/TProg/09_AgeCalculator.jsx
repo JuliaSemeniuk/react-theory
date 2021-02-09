@@ -1,41 +1,42 @@
 import React from 'react'
 
-function splitBirthData(birthData) {
-    const elements = birthData.split('.')
-    const day = Number(elements[0])
-    const month = Number(elements[1])
-    const year = Number(elements[2])
-    console.log('day:', day, '; month:', month, '; year:', year, ';')
-    return { day, month, year } //if name === keys
-}
+// function splitBirthData(birthData) {
+//     const elements = birthData.split('.')
+//     const day = Number(elements[0])
+//     const month = Number(elements[1])
+//     const year = Number(elements[2])
+//     console.log('day:', day, '; month:', month, '; year:', year, ';')
+//     return { day, month, year } //if name === keys
+// }
 
-function splitCurrentData(currentData) {
-    const elements = currentData.split('.')
-    const day = Number(elements[0])
-    const month = Number(elements[1])
-    const year = Number(elements[2])
-    console.log('day:', day, '; month:', month, '; year:', year, ';')
-    return { day, month, year } //if name === keys
-}
+// function splitCurrentData(currentData) {
+//     const elements = currentData.split('.')
+//     const day = Number(elements[0])
+//     const month = Number(elements[1])
+//     const year = Number(elements[2])
+//     console.log('day:', day, '; month:', month, '; year:', year, ';')
+//     return { day, month, year } //if name === keys
+// }
+
 //check a leap year on birth and current year
-const checkIsLeapYear = (param) => {
-    return (param % 4 === 0 && param % 100 !== 0) || param % 400 === 0
-}
+// const checkIsLeapYear = (param) => {
+//     return (param % 4 === 0 && param % 100 !== 0) || param % 400 === 0
+// }
 
 //an amount of leap years in current period
-function calculateLeapYears(birthYear, currentYear) {
-    let amountLeatYear = 0
+// function calculateLeapYears(birthYear, currentYear) {
+//     let amountLeatYear = 0
 
-    for (let i = birthYear; i < currentYear; i++) {
-        if (checkIsLeapYear(i)) {
-            amountLeatYear = amountLeatYear + 1
-        }
-    }
+//     for (let i = birthYear; i < currentYear; i++) {
+//         if (checkIsLeapYear(i)) {
+//             amountLeatYear = amountLeatYear + 1
+//         }
+//     }
 
-    console.log('amount of leap years: ', amountLeatYear)
+//     console.log('amount of leap years: ', amountLeatYear)
 
-    return amountLeatYear
-}
+//     return amountLeatYear
+// }
 
 //an amount of days in birth year a person lived
 function calculateDaysInBirthYear(birthMonth, isLeapBirthYear, day30, day31) {
@@ -102,6 +103,54 @@ function calculateAge(
 }
 
 export default class AgeCalculator extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            startData: '',
+            endData: '',
+            inDays: '',
+        }
+        //datas validation!!!!
+    }
+
+    onChangeGetStartData = (event) => {
+        const startDataSplited = event.target.value.split('.')
+        const startDataObject = {
+            day: Number(startDataSplited[0]),
+            month: Number(startDataSplited[1]),
+            year: Number(startDataSplited[2]),
+        }
+        this.setState({ startData: startDataObject })
+    }
+
+    onChangeGetEndData = (event) => {
+        const endDataSplited = event.target.value.split('.')
+        const endDataObject = {
+            day: Number(endDataSplited[0]),
+            month: Number(endDataSplited[1]),
+            year: Number(endDataSplited[2]),
+        }
+        this.setState({ endData: endDataObject })
+    }
+
+    checkIsLeapYear = (year) => {
+        const isLeapCheckingYear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
+        return isLeapCheckingYear
+    }
+
+    countAmountOfLeapYearsFromStartToEnd(startYear, endYear) {
+        let amountOfLeapYearsForCheckingPeriod = 0
+
+        for (let i = startYear; i < endYear; i++) {
+            if (checkIsLeapYear(i)) {
+                amountOfLeapYears = amountOfLeapYears + 1
+            }
+        }
+
+        return amountOfLeapYearsForCheckingPeriod
+    }
+
     render() {
         const julieBirthData = '11.08.1992'
         const currentData = '25.03.2020'
@@ -131,6 +180,11 @@ export default class AgeCalculator extends React.Component {
                     Функция конвертирует возраст человека в колличество дней, принимает дату рождения 11.01.1991 в виде
                     строки, возвращает число: {age}
                 </p>
+                <input onChange={this.onChangeGetStartData} type="text" placeholder="start date"></input>
+                <br />
+                <input onChange={this.onChangeGetEndData} type="text" placeholder="end date"></input>
+                <br />
+                <button>go!</button>
             </div>
         )
     }
