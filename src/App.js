@@ -18,13 +18,13 @@ function App() {
     return (
         <div className="App">
             {/* <Review /> */}
-            {/* <LearnCSS/> */}
+            <LearnCSS />
             {/* {<CurrencyConverter/>} */}
             {/* {<Alphabet />} */}
             {/*<Cryptographer />*/}
             {/* {<Calendar />} */}
             {/* {<TrianglesArea />} */}
-            {<AgeCalculator />}
+            {/* {<AgeCalculator />} */}
         </div>
     )
 }
