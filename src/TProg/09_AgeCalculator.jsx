@@ -18,45 +18,53 @@ function countAmountOfLeapYearsFromStartToEnd(startYear, endYear) {
     return amountOfLeapYearsForCheckingPeriod
 }
 
-function countAmountOfDaysInStartYear(startMonth, isLeapStartYear, day30, day31) {
-    let amountOfDaysInStartYear = 0
+function countAmountOfDaysInStartYear(startDay, startMonth, isLeapStartYear, day30, day31) {
+    let amountOfDaysInStartYearMonthly = 0
 
     for (let i = startMonth; i < 13; i++) {
         if (day30.includes(i)) {
-            amountOfDaysInStartYear = amountOfDaysInStartYear + 30
+            amountOfDaysInStartYearMonthly = amountOfDaysInStartYearMonthly + 30
             continue
         }
         if (day31.includes(i)) {
-            amountOfDaysInStartYear = amountOfDaysInStartYear + 31
+            amountOfDaysInStartYearMonthly = amountOfDaysInStartYearMonthly + 31
             continue
         } else {
-            amountOfDaysInStartYear = isLeapStartYear ? amountOfDaysInStartYear + 29 : amountOfDaysInStartYear + 28
+            amountOfDaysInStartYearMonthly = isLeapStartYear
+                ? amountOfDaysInStartYearMonthly + 29
+                : amountOfDaysInStartYearMonthly + 28
         }
     }
 
-    //const totalAmoundOfDaysInStartYear = isLeapStartYear ? 366 + amountOfDaysInStartYear : 365 + amountOfDaysInStartYear
+    let amountOfDaysInStartYear = isLeapStartYear
+        ? 366 - amountOfDaysInStartYearMonthly - startDay
+        : 365 - amountOfDaysInStartYearMonthly - startDay
 
-    //mountOfDaysInStartYear = totalAmoundOfDaysInStartYear - amountOfDaysInStartYear
-    //console.log('totalAmoundOfDaysInStartYear: ', totalAmoundOfDaysInStartYear)
+    console.log('amountOfDaysInStartYear: ', amountOfDaysInStartYear)
 
     return amountOfDaysInStartYear
 }
 
-function countAmountOfDaysInEndYear(endMonth, isLeapEndYear, day30, day31) {
-    let amountOfDaysInEndYear = 0
+function countAmountOfDaysInEndYear(endDay, endMonth, isLeapEndYear, day30, day31) {
+    let amountOfDaysInEndYearMontly = 0
 
     for (let i = 1; i < endMonth; i++) {
         if (day30.includes(i)) {
-            amountOfDaysInEndYear = amountOfDaysInEndYear + 30
+            amountOfDaysInEndYearMontly = amountOfDaysInEndYearMontly + 30
             continue
         }
         if (day31.includes(i)) {
-            amountOfDaysInEndYear = amountOfDaysInEndYear + 31
+            amountOfDaysInEndYearMontly = amountOfDaysInEndYearMontly + 31
             continue
         } else {
-            amountOfDaysInEndYear = isLeapEndYear ? amountOfDaysInEndYear + 29 : amountOfDaysInEndYear + 28
+            amountOfDaysInEndYearMontly = isLeapEndYear
+                ? amountOfDaysInEndYearMontly + 29
+                : amountOfDaysInEndYearMontly + 28
         }
     }
+
+    let amountOfDaysInEndYear = amountOfDaysInEndYearMontly + endDay
+
     console.log('amountOfDaysInEndYear: ', amountOfDaysInEndYear)
     return amountOfDaysInEndYear
 }
@@ -66,11 +74,7 @@ function countTotalAmountOfDays(startData, endData, amountOfLeapYears, amountOfD
         (endData.year - startData.year - amountOfLeapYears) * 365 + amountOfLeapYears * 366
 
     const totalAmountOfDaysFromStartDataToEndData =
-        amountOfDaysFromStartYearToEnadYear -
-        amountOfDaysInStartYear -
-        startData.day +
-        amountOfdaysInEndYear +
-        endData.day
+        amountOfDaysFromStartYearToEnadYear + amountOfDaysInStartYear + amountOfdaysInEndYear
 
     console.log('amountOfDaysFromStartYearToEnadYear:', amountOfDaysFromStartYearToEnadYear)
     console.log('totalAmountOfDays:', totalAmountOfDaysFromStartDataToEndData)
@@ -112,86 +116,6 @@ export default class AgeCalculator extends React.Component {
         this.setState({ endData: endDataObject })
     }
 
-    // checkIsLeapYear = (year) => {
-    //     const isLeapCheckingYear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
-    //     console.log('is leap ckecking year:', isLeapCheckingYear)
-    //     return isLeapCheckingYear
-    // }
-
-    // countAmountOfLeapYearsFromStartToEnd = (startYear, endYear) => {
-    //     let amountOfLeapYearsForCheckingPeriod = 0
-
-    //     for (let i = startYear; i < endYear; i++) {
-    //         if (this.checkIsLeapYear(i)) {
-    //             amountOfLeapYearsForCheckingPeriod = amountOfLeapYearsForCheckingPeriod + 1
-    //         }
-    //     }
-
-    //     return amountOfLeapYearsForCheckingPeriod
-    // }
-
-    // countAmountOfDaysInStartYear = (startMonth, isLeapStartYear, day30, day31) => {
-    //     let amountOfDaysInStartYear = 0
-
-    //     for (let i = startMonth; i < 13; i++) {
-    //         if (day30.includes(i)) {
-    //             amountOfDaysInStartYear = amountOfDaysInStartYear + 30
-    //             continue
-    //         }
-    //         if (day31.includes(i)) {
-    //             amountOfDaysInStartYear = amountOfDaysInStartYear + 31
-    //             continue
-    //         } else {
-    //             amountOfDaysInStartYear = isLeapStartYear ? amountOfDaysInStartYear + 29 : amountOfDaysInStartYear + 28
-    //         }
-    //     }
-
-    //     const totalAmoundOfDaysInStartYear = isLeapStartYear ? 366 : 365
-
-    //     amountOfDaysInStartYear = totalAmoundOfDaysInStartYear - amountOfDaysInStartYear
-
-    //     return amountOfDaysInStartYear
-    // }
-
-    // countAmountOfDaysInEndYear = (endMonth, isLeapEndYear, day30, day31) => {
-    //     let amountOfDaysInEndYear = 0
-
-    //     for (let i = 1; i < endMonth; i++) {
-    //         if (day30.includes(i)) {
-    //             amountOfDaysInEndYear = amountOfDaysInEndYear + 30
-    //             continue
-    //         }
-    //         if (day31.includes(i)) {
-    //             amountOfDaysInEndYear = amountOfDaysInEndYear + 31
-    //             continue
-    //         } else {
-    //             amountOfDaysInEndYear = isLeapEndYear ? amountOfDaysInEndYear + 29 : amountOfDaysInEndYear + 28
-    //         }
-    //     }
-
-    //     return amountOfDaysInEndYear
-    // }
-
-    // countTotalAmountOfDays = (
-    //     startData,
-    //     endData,
-    //     amountOfLeapYears,
-    //     amountOfDaysInStartYear,
-    //     amountOfdaysInEndYear
-    // ) => {
-    //     const amountOfDaysFromStartYearToEnadYear =
-    //         (endData.year - startData.year - amountOfLeapYears) * 365 + amountOfLeapYears * 366
-
-    //     const totalAmountOfDaysFromStartDataToEndData =
-    //         amountOfDaysFromStartYearToEnadYear -
-    //         amountOfDaysInStartYear -
-    //         startData.day +
-    //         amountOfdaysInEndYear +
-    //         endData.day
-
-    //     return totalAmountOfDaysFromStartDataToEndData
-    // }
-
     render() {
         const day30 = [4, 6, 9, 11]
         const day31 = [1, 3, 5, 7, 8, 10, 12]
@@ -204,9 +128,21 @@ export default class AgeCalculator extends React.Component {
 
         const amountOfLeapYearsFromStartToEnd = countAmountOfLeapYearsFromStartToEnd(startData.year, endData.year)
 
-        const amountOfDaysInStartYear = countAmountOfDaysInStartYear(startData.month, isLeapStartYear, day30, day31)
+        const amountOfDaysInStartYear = countAmountOfDaysInStartYear(
+            startData.day,
+            startData.month,
+            isLeapStartYear,
+            day30,
+            day31
+        )
 
-        const amountOfDaysInEndYear = countAmountOfDaysInEndYear(endData.month, isLeapEndYear, day30, day31)
+        const amountOfDaysInEndYear = countAmountOfDaysInEndYear(
+            endData.day,
+            endData.month,
+            isLeapEndYear,
+            day30,
+            day31
+        )
 
         const totalAmountOfDays = countTotalAmountOfDays(
             startData,
